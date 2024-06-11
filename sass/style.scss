@@ -1,56 +1,199 @@
+html{
+    scroll-behavior: smooth;
+}
+body{
+    background-color: #b8b8b8;
+    overflow-x: hidden;
+}
+
+
 nav{
     position: fixed;
     top: 0px;
     left: 0px;
-    width: 50px;
-    height: 100vh;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
     z-index: 900;
-    background-color: #666666;
+    background-color: transparent;
     img{
-        width: 100%;
+        height: 80px;
+        width: 80px;
         filter: drop-shadow(0px 0px 2px #000);
     }
+    a{
+        text-decoration: none;
+        color: #fff;
+        font-size: 20px;
+        filter: drop-shadow(0px 0px 3px #000);
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
 }
-
 .banner{
     position: relative;
     width: 100%;
+    aspect-ratio: 16/8;
+    background-color: #111111;
+    overflow: hidden;
+    mask-image: linear-gradient(#111111 80%, transparent);
     img{
         position: absolute;
         top: 0px;
-        left: 0px;
-        aspect-ratio: 16/8;
+        width: 100%;
+        height: 100%;
     }
-    .banner_img_1{
-        z-index: 2;
-        filter: drop-shadow(0px 0px 4px #fbff00);
-        animation: bannerMove 1s reverse infinite;
+    .banner__img_2{
+        animation: moveToLeft 7s ease-in-out infinite;
     }
-    .banner_img_2{
-        z-index: 2;
-        padding-left: 20px;
-        filter: drop-shadow(0px 0px 4px #fbff00);
-        animation: bannerMove 0.8s linear infinite;
-    }
-    .banner_img_3{
-        z-index: 1;
-        background-color: #000;
+    .banner__img_3{
+        animation: moveToLeft 7s ease-in-out 1s infinite;
     }
 }
-@keyframes bannerMove {
+@keyframes moveToLeft {
     0%{
-        transform: translate(0px, 0px);
-    }
-    25%{
-        transform: translate(5px, 13px);
+        transform: translateY(0%);
     }
     50%{
-        transform: translate(-10px, 10px);
-    }
-    75%{
-        transform: translate(10px, 0px);
+        transform: translateY(5%);
     }
     100%{
-        transform: translate(0px, 0px);
+        transform: translateY(0%);
     }
+}
+@mixin sectionsStyle{
+    position: relative;
+    width: 70%;
+    margin: 100px 15%;
+    aspect-ratio: 9/5;
+    text-align: justify;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    border-radius: 2px;
+    background-color: #111111;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px #000;
+}
+@mixin imgsectionStyle{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+@mixin PsectionStyle{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 5px 20px;
+    color: #000;
+    min-height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: justify;
+    box-shadow: 0px 0px 15px #000;
+    z-index: 5;
+}
+@mixin cardSectionsStyle{
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    height: 50px;
+    color: #000;
+    border-radius: 0px 0px 10px 10px;
+    font-size: 25px;
+    padding: 5px 5px;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px #000;
+    font-family: "Permanent Marker", cursive;
+}
+
+.info{
+    @include sectionsStyle;
+    p{
+        filter: drop-shadow(0px 0px 2px #000);
+        color: #fff;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 16px;
+        z-index: 5;
+    }
+    img{
+        @include imgsectionStyle;
+        opacity: 0.3;
+    }
+}
+.some_songs_title{
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-family: "Permanent Marker", cursive;
+    color: #fff;
+    margin-bottom: 50px;
+}
+.someSongs{
+    width: 100%;
+    padding: 0px 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    iframe{
+        scale: 0.9;
+        height: 500px;
+        flex: 1;
+    }
+}
+.albums{
+    @include sectionsStyle;
+    background-color: #000;
+    .albums__card{
+        @include cardSectionsStyle;
+        z-index: 5;
+    }
+    img{
+        @include imgsectionStyle;
+        opacity: 0.5;
+    }
+    p{
+        @include PsectionStyle;
+    }
+}
+/*========== ALBUMS ==========*/
+.second_banner{
+    width: 100%;
+    padding-top: 80px;
+    background: linear-gradient(0deg, rgba(34,193,195,0) 0%, rgba(17,17,17,1) 100%);
+    img{
+        width: 100%;
+        mask-image: linear-gradient(#111111 50%, transparent);
+        margin-bottom: -4px;
+    }
+}
+.album_section{
+    @include sectionsStyle;
+    div{
+        @include cardSectionsStyle;
+        z-index: 2;
+    }
+    img{
+        @include imgsectionStyle;
+        z-index: 1;
+    }
+    p{
+        @include PsectionStyle;
+        z-index: 2;
+    }
+}
+
+footer{
+    height: 200px;
+    width: 100%;
+    background-color: #222222;
 }
