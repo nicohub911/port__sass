@@ -1,429 +1,316 @@
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #000 #313131;
 }
 
-body {
-  background-color: #000;
-  overflow-x: hidden;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-nav {
+#loadingWindow {
+  background-color: #d1d1d1;
   position: fixed;
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 80px;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5%;
-  z-index: 900;
-  background-color: transparent;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 90000;
 }
-nav img {
-  height: 80px;
-  width: 80px;
-  filter: drop-shadow(0px 0px 2px #000);
+#loadingWindow img {
+  filter: drop-shadow(0px 0px 10px #525252);
+  width: 100px;
+  height: 100px;
 }
-nav a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 1.3rem;
-  font-family: "Permanent Marker", serif;
-  filter: drop-shadow(0px 0px 2px #000);
+#loadingWindow div {
+  box-shadow: 0px 0px 1px #000;
+  height: 2px;
+  width: 100px;
 }
-nav a:hover {
-  color: #ffd900;
+#loadingWindow div div {
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  animation: progress 5s ease-in-out 1;
+}
+@keyframes progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 .banner {
-  width: 100%;
   height: 100vh;
-  overflow: hidden;
+  width: 100%;
+  background-image: url(../img/banner/bk.gif);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.banner .banner_filter {
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0) 50%, rgb(0, 0, 0));
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation: bannerCourtain 5.5s linear 1;
+}
+@keyframes bannerCourtain {
+  0% {
+    background-color: #000;
+  }
+  95% {
+    background-color: #000;
+  }
+  100% {
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0) 50%, rgb(0, 0, 0));
+  }
+}
+.banner .banner_filter .banner_filter_IMGcontainer {
+  width: 50%;
+  max-width: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
-.banner .banner__container {
+.banner .banner_filter .banner_filter_IMGcontainer img {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 }
-.banner .banner__container img {
-  width: 10%;
-  animation: bannerLogo 3s ease-in-out infinite;
+.banner .banner_filter .banner_filter_IMGcontainer .bannIMG1 {
+  position: inline;
+  animation: bannerAnimation 1s infinite ease-in-out;
 }
-@keyframes bannerLogo {
+.banner .banner_filter .banner_filter_IMGcontainer .bannIMG2 {
+  position: absolute;
+  animation: bannerAnimation 5s infinite ease-in-out;
+}
+.banner .banner_filter .banner_filter_IMGcontainer .bannIMG3 {
+  position: absolute;
+  animation: bannerAnimation 1s infinite reverse ease-in-out;
+}
+@keyframes bannerAnimation {
   0% {
-    transform: translate(0px, 10px);
+    filter: drop-shadow(0px 0px 10px #4a1fad);
   }
-  25% {
-    transform: translate(10px, 0px);
+  33% {
+    filter: drop-shadow(0px 0px 10px #aa1f1f);
   }
-  50% {
-    transform: translate(0px, 0px);
-  }
-  75% {
-    transform: translate(10px, 10px);
+  66% {
+    filter: drop-shadow(0px 0px 10px #3e9217);
   }
   100% {
-    transform: translate(0px, 10px);
+    filter: drop-shadow(0px 0px 10px #4a1fad);
   }
 }
-.banner .banner__container ul {
+.banner .banner_filter ul {
+  border-top: 4px double #fff;
+  padding-top: 15px;
+  width: 50%;
+  max-width: 500px;
   list-style: none;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  filter: drop-shadow(0px 0px 5px #000);
+  justify-content: space-around;
+  gap: 10px;
 }
-.banner .banner__container ul li a {
+.banner .banner_filter ul li a {
+  font-family: "Work Sans", sans-serif;
+  font-size: 1.2rem;
   text-decoration: none;
   color: #fff;
-  font-size: 2rem;
-  font-family: "Permanent Marker", serif;
+  filter: drop-shadow(0px 0px 1px #000);
 }
-.banner .banner__container ul li a:hover {
-  color: #ffd900;
-}
-
-.banner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url(../img/banner/bannerImage.webp);
-  background-size: cover;
-  background-position: center;
-  z-index: -1;
-  -webkit-mask-image: url(../img/banner/bannerMask.gif);
-          mask-image: url(../img/banner/bannerMask.gif);
-  -webkit-mask-size: cover;
-          mask-size: cover;
-  -webkit-mask-position: center;
-          mask-position: center;
+.banner .banner_filter ul li a:hover {
+  filter: drop-shadow(0px 0px 5px #fff);
 }
 
-@media only screen and (min-width: 500px) {
-  .info {
-    width: 70%;
-    max-width: 1000px;
-    margin: 150px 15%;
-    padding: 10% 5%;
-    background-image: url(../img/infoIMG.webp);
-    background-position: center;
-    background-size: cover;
-  }
-  .info p {
-    filter: drop-shadow(0px 0px 2px #000);
-    color: #fff;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-    font-size: 16px;
-    z-index: 5;
-  }
-  .info img {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    opacity: 0.3;
-  }
-  .some_songs_title {
-    width: 100%;
-    text-align: center;
-    font-size: 30px;
-    font-family: "Permanent Marker", cursive;
-    color: #fff;
-    margin-bottom: 50px;
-    filter: drop-shadow(0px 0px 5px #000);
-  }
-  .someSongs {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-  .someSongs iframe {
-    scale: 0.9;
-    aspect-ratio: 8/8;
-    max-width: 50%;
-    flex: 1;
-  }
-  .albums {
-    position: relative;
-    width: 70%;
-    max-width: 800px;
-    margin: 100px 15%;
-    aspect-ratio: 9/5;
-    text-align: justify;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 50px;
-    border-radius: 2px;
-    background-color: #111111;
-    overflow: hidden;
-    box-shadow: 0px 0px 5px #000;
-    background-color: #000;
-  }
-  .albums .albums__card {
-    position: absolute;
-    top: 0px;
-    left: 10px;
-    height: 50px;
-    color: #000;
-    border-radius: 0px 0px 10px 10px;
-    font-size: 25px;
-    padding: 5px 5px;
-    background-color: #fff;
-    box-shadow: 0px 0px 5px #000;
-    font-family: "Permanent Marker", cursive;
-    z-index: 5;
-  }
-  .albums img {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    opacity: 0.5;
-  }
-  .albums p {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
-    background-color: #ffffff;
-    padding: 5px 20px;
-    color: #000;
-    min-height: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: justify;
-    box-shadow: 0px 0px 15px #000;
-    font-size: 15px;
-    z-index: 5;
-  }
-  /*========== ALBUMS ==========*/
-  .second_banner {
-    width: 100%;
-    padding-top: 80px;
-    background: linear-gradient(0deg, rgba(34, 193, 195, 0) 0%, rgb(17, 17, 17) 100%);
-  }
-  .second_banner img {
-    width: 100%;
-    -webkit-mask-image: linear-gradient(#111111 50%, transparent);
-            mask-image: linear-gradient(#111111 50%, transparent);
-    margin-bottom: -4px;
-  }
-  .album_section {
-    position: relative;
-    width: 70%;
-    max-width: 800px;
-    margin: 100px 15%;
-    aspect-ratio: 9/5;
-    text-align: justify;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 50px;
-    border-radius: 2px;
-    background-color: #111111;
-    overflow: hidden;
-    box-shadow: 0px 0px 5px #000;
-  }
-  .album_section div {
-    position: absolute;
-    top: 0px;
-    left: 10px;
-    height: 50px;
-    color: #000;
-    border-radius: 0px 0px 10px 10px;
-    font-size: 25px;
-    padding: 5px 5px;
-    background-color: #fff;
-    box-shadow: 0px 0px 5px #000;
-    font-family: "Permanent Marker", cursive;
-    z-index: 2;
-  }
-  .album_section img {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    z-index: 1;
-  }
-  .album_section p {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
-    background-color: #ffffff;
-    padding: 5px 20px;
-    color: #000;
-    min-height: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: justify;
-    box-shadow: 0px 0px 15px #000;
-    font-size: 15px;
-    z-index: 5;
-    font-family: sans-serif;
-    z-index: 2;
-  }
-}
-@media only screen and (max-width: 500px) {
-  .info {
-    width: 100%;
-    position: relative;
-    margin: 50px 0px;
-    text-align: justify;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    border-radius: 2px;
-    background-color: #111111;
-    overflow: hidden;
-  }
-  .info p {
-    filter: drop-shadow(0px 0px 2px #000);
-    color: #fff;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-    font-size: 16px;
-    z-index: 5;
-  }
-  .info img {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    opacity: 0.3;
-  }
-  .some_songs_title {
-    width: 100%;
-    text-align: center;
-    font-size: 30px;
-    font-family: "Permanent Marker", cursive;
-    color: #fff;
-    margin-bottom: 50px;
-    filter: drop-shadow(0px 0px 5px #000);
-  }
-  .someSongs {
-    width: 100%;
-    padding: 20px 0px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-  .someSongs iframe {
-    width: 100%;
-    margin: -15px 0px;
-    flex: 1;
-  }
-  /*========== ALBUMS ==========*/
-  .second_banner {
-    width: 100%;
-    padding-top: 80px;
-    background: linear-gradient(0deg, rgba(34, 193, 195, 0) 0%, rgb(17, 17, 17) 100%);
-  }
-  .second_banner img {
-    width: 100%;
-    -webkit-mask-image: linear-gradient(#111111 50%, transparent);
-            mask-image: linear-gradient(#111111 50%, transparent);
-    margin-bottom: -4px;
-  }
-  .album_section {
-    position: relative;
-    width: 100%;
-    margin: 50px 0%;
-    aspect-ratio: 9/8;
-    text-align: justify;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 50px;
-    border-radius: 2px;
-    background-color: #111111;
-    overflow: hidden;
-    box-shadow: 0px 0px 5px #000;
-  }
-  .album_section div {
-    position: absolute;
-    top: 0px;
-    left: 10px;
-    height: 50px;
-    color: #000;
-    border-radius: 0px 0px 10px 10px;
-    font-size: 25px;
-    padding: 5px 5px;
-    background-color: #fff;
-    box-shadow: 0px 0px 5px #000;
-    font-family: "Permanent Marker", cursive;
-    z-index: 2;
-  }
-  .album_section img {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    z-index: 1;
-  }
-  .album_section p {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
-    background-color: #ffffff;
-    padding: 5px 20px;
-    color: #000;
-    min-height: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: justify;
-    box-shadow: 0px 0px 15px #000;
-    font-size: 15px;
-    z-index: 5;
-    font-family: sans-serif;
-    z-index: 2;
-  }
-}
-footer {
-  height: 200px;
+.info {
   width: 100%;
-  gap: 10%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.info video {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: 1;
+}
+.info p {
+  width: 50%;
+  max-width: 600px;
+  min-width: 350px;
+  text-align: justify;
+  font-family: "Work Sans", sans-serif;
+  font-size: 1rem;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  padding: 30px 20px;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 100;
+}
+
+.socials {
+  background-color: #bebebe;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+  padding: 50px 0px;
+}
+.socials iframe {
+  min-width: 400px;
+  width: 50%;
+  max-width: 600px;
+}
+.socials a {
+  min-width: 400px;
+  width: 50%;
+  max-width: 600px;
+  overflow: hidden;
+  border-radius: 15px;
+}
+.socials a img {
+  width: 100%;
+}
+.socials blockquote {
+  min-width: 400px;
+  width: 50%;
+  max-width: 600px;
+}
+
+footer {
+  height: 50px;
+  width: 100%;
   background: linear-gradient(0deg, rgb(33, 33, 33) 0%, rgb(0, 0, 0) 100%);
 }
-footer a {
-  width: 50px;
-  height: 50px;
+
+nav {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px 0px;
+  gap: 5px;
+  z-index: 90000;
 }
-footer a svg {
+nav a {
+  position: relative;
+  text-decoration: none;
+  font-weight: bold;
+  filter: drop-shadow(0px 0px 1px #000);
+}
+nav a:first-child {
+  font-family: "Macondo", cursive;
+  color: #fff;
+  font-size: 2rem;
+}
+nav a:last-child {
+  font-family: "Macondo", cursive;
+  font-size: 1rem;
+  color: #fff;
+  display: flex;
+}
+nav a:last-child svg {
+  margin-right: 5px;
+  width: 1rem;
+  height: 1rem;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 0px;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s, left 0.3s;
+}
+nav a:hover::after {
+  width: 100%;
+  left: 0px;
+}
+
+.parallax {
+  height: 100vh;
+  width: 100%;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  scroll-snap-align: start;
+}
+.parallax .parallax_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 100%;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.parallax .parallax_container h3 {
+  font-family: "Gloria Hallelujah", cursive;
+  color: #000;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 10px;
+}
+.parallax .parallax_container p {
+  width: 500px;
+  font-family: "Special Elite", system-ui;
+  font-size: 1rem;
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 2px;
+  padding: 20px;
+}
+
+.parallax:nth-child(2) {
+  background-image: url(../img/albums/SITS.webp);
+}
+
+.parallax:nth-child(3) {
+  background-image: url(../img/albums/ShoegazingKids.webp);
+}
+
+.parallax:nth-child(4) {
+  background-image: url(../img/albums/Pursuit.webp);
+}
+
+.parallax:nth-child(5) {
+  background-image: url(../img/albums/Survivor.webp);
+}
+
+.parallax:nth-child(6) {
+  background-image: url(../img/albums/BillyBelive.webp);
+}
+
+.parallax:nth-child(7) {
+  background-image: url(../img/albums/16dreamsAminute.webp);
+}
+
+.parallax:nth-child(8) {
+  background-image: url(../img/albums/LiveMexico.webp);
 }/*# sourceMappingURL=style.css.map */
